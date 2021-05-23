@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tarea3/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/tarea3/static/js/main.1fdffd3a.chunk.js",
+    "main.js.map": "/tarea3/static/js/main.1fdffd3a.chunk.js.map",
+    "runtime-main.js": "/tarea3/static/js/runtime-main.376ef6ed.js",
+    "runtime-main.js.map": "/tarea3/static/js/runtime-main.376ef6ed.js.map",
+    "static/js/2.88d4f6bb.chunk.js": "/tarea3/static/js/2.88d4f6bb.chunk.js",
+    "static/js/2.88d4f6bb.chunk.js.map": "/tarea3/static/js/2.88d4f6bb.chunk.js.map",
+    "static/js/3.3ded9ab5.chunk.js": "/tarea3/static/js/3.3ded9ab5.chunk.js",
+    "static/js/3.3ded9ab5.chunk.js.map": "/tarea3/static/js/3.3ded9ab5.chunk.js.map",
+    "index.html": "/tarea3/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/tarea3/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.88d4f6bb.chunk.js.LICENSE.txt": "/tarea3/static/js/2.88d4f6bb.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/tarea3/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.376ef6ed.js",
+    "static/js/2.88d4f6bb.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.1fdffd3a.chunk.js"
+  ]
+}
