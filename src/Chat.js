@@ -2,33 +2,41 @@ import React, { useEffect, useState, Component } from 'react';
 import {socket} from "./services/socket";
 
 //component chat recibe userrname
-var _username = "guest"
 
-function LogIn() {
-    const [username, setUsername] = useState("guest");
+function LogIn(props) {
+        
 
     const handleSubmit = (event) => {
-        _username = event.target.value;
-        setUsername(event.target.value);
+        if (event) {
+            event.preventDefault();
+          }
+        props.setUsername(event.target.value);
     }
 
     const handleInputChange = (event) => {
-        // console.log(event.target.name)
-        // console.log(event.target.value)
-        setUsername(event.target.value)
+        if (event) {
+            event.preventDefault();
+          }
+        props.setUsername({
+            ...props.username,
+            [event.target.name] : event.target.value
+        })
     }
-        
+
     return (
         <div>
-            <p>Current username: {_username}</p>
+            <p>Current username: {props.username}</p>
+
             <form onSubmit={handleSubmit}>
                 <label>
-                Change username:
-                <input type="text" value={username} onChange={handleInputChange}/>
+                Name:
+                <input type="text" value="" onChange={handleInputChange} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
         </div>
+
+
     )
     
 }
@@ -37,16 +45,22 @@ function ChatLog() {
     return 2+2
 }
 
+function Message() {
+    return 4+4
+}
+
 function SendMessage() {
     return 1 +1;
 }
 
 export default function Chat() {
+
+    const [username, setUsername] = useState("guest");
     const [flights, setFlights] = useState([]);
     const [count, setCount] = useState(0);
   
     useEffect(() => {
-      socket.on("FLIGHTS", data => {
+      socket.on("CHAT", data => {
         setFlights(JSON.stringify(data));
       });
   
@@ -59,10 +73,7 @@ export default function Chat() {
     return (
       <div>
         <p> CENTRO DE CONTROL </p>
-        <button onClick={() => setCount(count + 1)}>
-          Click me
-        </button>
-        <LogIn message="remember to drink some water" />
+        <LogIn username={username} setUsername={setUsername}/>
       </div>
       
     );
