@@ -3,7 +3,6 @@ import {socket} from "./services/socket";
 import leaflet, { MapContainer, TileLayer, Marker, Popup, Polyline, Circle} from 'react-leaflet'
 import L from "leaflet";
 
-//component chat recibe userrname
 import './Map.css';
 
 export default function Map({flights}) {
@@ -48,8 +47,9 @@ export default function Map({flights}) {
 
   return (
     <div>
-      <p>MAPA "En vivo"</p>
-        <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={false}>
+      <h2>MAPA "En vivo"</h2>
+      <h4>Hacer click sobre un avión para obtener su código</h4>
+        <MapContainer center={[-35,-65]} zoom={4} scrollWheelZoom={false}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -94,7 +94,7 @@ function DisplayAirplane({airplane}) {
   return (
     <Marker position={airplane.position} icon={myIcon}>
             <Popup>
-              Airplane: {airplane.code}
+              Code: {airplane.code}
             </Popup>
     </Marker>
   )

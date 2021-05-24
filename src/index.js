@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Flights from './Flights';
 import Chat from './Chat';
-import Map from './Map';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Flights />
-    <br/>
+    <div id="container">
+      <div><Flights /></div>
+      <div><Chat    /></div>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

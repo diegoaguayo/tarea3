@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#container {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  background-color: lightyellow;
+}
+#container > div {
+  margin: 40px;
+  padding: 20px;
+  width: 100%;
+  height: 80%;
+  border: 2px solid black;
+}

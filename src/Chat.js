@@ -10,7 +10,7 @@ export default function Chat() {
   
     return (
       <div>
-        <p> CENTRO DE CONTROL </p>
+        <h2> CENTRO DE CONTROL </h2>
         <LogIn username={username} setUsername={setUsername}/>
         <ChatLog/>
         <SendMessage username={username}/>
@@ -29,14 +29,14 @@ function LogIn(props) {
     }
     return (
         <div>
-            <p>Current username: {props.username}</p>
+            <h4>Nombre de usuario: <strong>{props.username}</strong></h4>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
-                Name:<br/>
-                <input type="text" placeholder="username" name="username" {...register('username')} />
+                Cambiar nombre de usuario:<br/>
+                <input type="text" placeholder="" name="username" {...register('username')} />
                 </label>
-                <input type="submit"/>
+                <input type="submit" value="Actualizar"/>
             </form>
         </div>
 
@@ -53,9 +53,7 @@ function ChatLog() {
     }
 
     const messagesList = msgs.map((msg) =>
-        <li>
             <ShowMessage msg={msg}/>
-        </li>
     );
   
     useEffect(() => {
@@ -64,10 +62,8 @@ function ChatLog() {
   
     return (
       <div>
-        <p>LOG MENSAJES:</p>
-        <ul>
+        <h4>LOG MENSAJES:</h4>
             {messagesList}
-        </ul>
       </div>
       
     );
@@ -75,10 +71,10 @@ function ChatLog() {
 
 function ShowMessage({msg}) {
     return (
-        <section style={{border: "1px solid black"}}>
-            Name: {msg.name} <br/>
-            Date: {msg.date} <br/>
-            Message: {msg.message}
+        <section style={{padding: "10px", border: "1px solid black"}}>
+            <strong>username: {msg.name} <br/></strong>
+            Date: {new Date(msg.date).toUTCString()} <br/>
+            <strong>Message: {msg.message}</strong>
         </section>
     );
 }
@@ -96,10 +92,10 @@ function SendMessage(props) {
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
-                Message: <br/>
+                Mensaje: <br/>
                 <textarea type="text" placeholder="" name="message" {...register("message")} />
                 </label>
-                <input type="submit" value="Send"/>
+                <input type="submit" value="Enviar"/>
             </form>
         </div>
 
