@@ -1,38 +1,26 @@
 import React, { useEffect, useState, Component } from 'react';
 import {socket} from "./services/socket";
+import {useForm} from "react-hook-form";
 
 //component chat recibe userrname
 
 function LogIn(props) {
-        
 
-    const handleSubmit = (event) => {
-        if (event) {
-            event.preventDefault();
-          }
-        props.setUsername(event.target.value);
+    const {register, handleSubmit} = useForm();
+
+    const onSubmit = (data) => {
+       props.setUsername(data.username)
     }
-
-    const handleInputChange = (event) => {
-        if (event) {
-            event.preventDefault();
-          }
-        props.setUsername({
-            ...props.username,
-            [event.target.name] : event.target.value
-        })
-    }
-
     return (
         <div>
             <p>Current username: {props.username}</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
                 Name:
-                <input type="text" value="" onChange={handleInputChange} />
+                <input type="text" placeholder="username" name="username" {...register('username')} />
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit"/>
             </form>
         </div>
 
