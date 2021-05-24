@@ -4,12 +4,28 @@ import {useForm} from "react-hook-form";
 
 //component chat recibe userrname
 
+export default function Chat() {
+
+    const [username, setUsername] = useState("guest");
+  
+    return (
+      <div>
+        <p> CENTRO DE CONTROL </p>
+        <LogIn username={username} setUsername={setUsername}/>
+        <ChatLog/>
+        <SendMessage username={username}/>
+      </div>
+      
+    );
+  }
+
 function LogIn(props) {
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, reset} = useForm();
 
     const onSubmit = (data) => {
-       props.setUsername(data.username)
+       props.setUsername(data.username);
+       reset({});
     }
     return (
         <div>
@@ -17,7 +33,7 @@ function LogIn(props) {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>
-                Name:
+                Name:<br/>
                 <input type="text" placeholder="username" name="username" {...register('username')} />
                 </label>
                 <input type="submit"/>
@@ -30,39 +46,65 @@ function LogIn(props) {
 }
 
 function ChatLog() {
-    return 2+2
-}
+    const [msgs, setMsg] = useState([]);
 
-function Message() {
-    return 4+4
-}
+    function logMsg(data) {
+        setMsg( oldArray => [...oldArray, data])
+    }
 
-function SendMessage() {
-    return 1 +1;
-}
-
-export default function Chat() {
-
-    const [username, setUsername] = useState("guest");
-    const [flights, setFlights] = useState([]);
-    const [count, setCount] = useState(0);
+    const messagesList = msgs.map((msg) =>
+        <li>
+            <ShowMessage msg={msg}/>
+        </li>
+    );
   
     useEffect(() => {
-      socket.on("CHAT", data => {
-        setFlights(JSON.stringify(data));
-      });
-  
-      socket.on("POSITION", data => {
-        setFlights(JSON.stringify(data));
-      });
-  
+      socket.on("CHAT", data => logMsg(data));
     }, []);
   
     return (
       <div>
-        <p> CENTRO DE CONTROL </p>
-        <LogIn username={username} setUsername={setUsername}/>
+        <p>LOG MENSAJES:</p>
+        <ul>
+            {messagesList}
+        </ul>
       </div>
       
     );
-  }
+}
+
+function ShowMessage({msg}) {
+    return (
+        <section style={{border: "1px solid black"}}>
+            Name: {msg.name} <br/>
+            Date: {msg.date} <br/>
+            Message: {msg.message}
+        </section>
+    );
+}
+
+function SendMessage(props) {
+    
+    const {register, handleSubmit, reset} = useForm();
+
+    const onSubmit = (data) => {
+        const msg = {name: props.username, message: data.message};
+        socket.emit("CHAT", msg);
+        reset({});
+    }
+    return (
+        <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label>
+                Message: <br/>
+                <textarea type="text" placeholder="" name="message" {...register("message")} />
+                </label>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
+
+
+    )
+    
+}
+
