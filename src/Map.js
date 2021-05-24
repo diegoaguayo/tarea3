@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Component } from 'react';
 import {socket} from "./services/socket";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, Circle} from 'react-leaflet'
+import leaflet, { MapContainer, TileLayer, Marker, Popup, Polyline, Circle} from 'react-leaflet'
+import L from "leaflet";
 
 //component chat recibe userrname
 import './Map.css';
@@ -11,6 +12,8 @@ export default function Map({flights}) {
         <Displacement key={flight.code} flight={flight}/>
   );
 
+  const [airplanePositions, setAirplanePositions] = useState({});
+
   const [positionPoints, setPositionPoints] = useState([]);
 
   useEffect(() => {
@@ -18,15 +21,23 @@ export default function Map({flights}) {
       logPositions(data);
     });
 
-    function logPositions(data) {
-      setPositionPoints( oldArray => [...oldArray, data])
-    }
-
   }, []);
 
+  function logPositions(data) {
+    setPositionPoints( oldArray => [...oldArray, data])
+    airplanePositions[data.code] = data;
+    console.log(airplanePositions)
+    setAirplanePositions({...airplanePositions});
+  }
+
   const loggedPositions = positionPoints.map((flight) =>
-        <PaintPosition key={flight.code} flight={flight}/>
+        <PaintPosition flight={flight}/>
   );
+
+  const logAirplanePositions = Object.keys(airplanePositions).map((key) =>
+    <DisplayAirplane airplane={airplanePositions[key]}/>
+  );
+  
     
   
 
@@ -38,11 +49,7 @@ export default function Map({flights}) {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          {logAirplanePositions}
           {displacementsList}
           {loggedPositions}
         </MapContainer>
@@ -63,35 +70,28 @@ function Displacement({flight}) {
     )
   }
 
-
 function PaintPosition({flight}) {
   const fillRedOptions = { fillColor: 'black' };
-  console.log(flight.position)
   return (
     <Circle center={flight.position} pathOptions={fillRedOptions} radius={200} />
   )
 }
 
+function DisplayAirplane({airplane}) {
 
+  const size = 50
 
+  const myIcon = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/20_airtransportation.svg',
+    iconSize  : [size, size],
+    iconAnchor: [size/2, size + 9],
+  });
 
-
-
-
-
-  /*
-      const [flights, setFlights] = useState([]);
-    const [count, setCount] = useState(0);
-  
-    useEffect(() => {
-      socket.on("FLIGHTS", data => {
-        setFlights(JSON.stringify(data));
-      });
-  
-      socket.on("POSITION", data => {
-        setFlights(JSON.stringify(data));
-      });
-  
-    }, []);
-  
-  */
+  return (
+    <Marker position={airplane.position} icon={myIcon}>
+            <Popup>
+              Airplane: {airplane.code}
+            </Popup>
+    </Marker>
+  )
+}
