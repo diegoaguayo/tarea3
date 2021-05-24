@@ -1,36 +1,51 @@
 import React, { useEffect, useState, Component } from 'react';
 import {socket} from "./services/socket";
+import Map from './Map';
 
-import './App.css';
+
+
 
 export default function Flights() {
   const [flights, setFlights] = useState([]);
-  const [count, setCount] = useState(0);
+  const [flightsByCode, setFlightsByCode] = useState({});
 
   useEffect(() => {
-    
+    socket.emit("FLIGHTS")
     socket.on("FLIGHTS", data => {
-      setFlights(JSON.stringify(data));
+      setFlights(data);
     });
 
   }, []);
 
   function getFlights() {
-    console.log("voy a solicitar los vuelos");
     socket.emit("FLIGHTS")
   }
 
+  const flightList = flights.map((flight) =>
+        <li>
+            <ShowFlight flight={flight}/>
+        </li>
+    );
+
   return (
     <div>
+      <Map flights={flights}/>
       <p> INFORMACION DE LOS VUELOS </p>
       <button onClick={() => getFlights()}>
-        Get Flights
+        Refresh Flights
       </button>
-      {flights}
+      <ul>
+        {flightList}
+      </ul>
     </div>
-    
   );
 }
+
+function ShowFlight({flight}) {
+  return flight.code
+}
+
+
 
 
 //component chat recibe userrname

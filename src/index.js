@@ -10,7 +10,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Flights />
     <br/>
-    <Map />
   </React.StrictMode>,
   document.getElementById('root')
 );
