@@ -16,8 +16,6 @@ export default function Map() {
         setFlights(JSON.stringify(data));
       });
   
-      document.title = `You clicked ${count} times`;
-  
     }, []);
   
     return (
