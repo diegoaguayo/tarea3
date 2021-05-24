@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from 'react';
-import socketIOClient from "socket.io-client";
+import {socket} from "./services/socket";
 
 //component chat recibe userrname
 
@@ -8,10 +8,6 @@ export default function Map() {
     const [count, setCount] = useState(0);
   
     useEffect(() => {
-      const socket = socketIOClient("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl/", {
-        path: "/flights"
-      });
-      socket.emit("FLIGHTS")
       socket.on("FLIGHTS", data => {
         setFlights(JSON.stringify(data));
       });

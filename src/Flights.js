@@ -1,11 +1,7 @@
 import React, { useEffect, useState, Component } from 'react';
-import socketIOClient from "socket.io-client";
+import {socket} from "./services/socket";
 
 import './App.css';
-
-const socket = socketIOClient("wss://tarea-3-websocket.2021-1.tallerdeintegracion.cl/", {
-      path: "/flights"
-    });
 
 export default function Flights() {
   const [flights, setFlights] = useState([]);
