@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/tarea3/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/tarea3/static/js/main.082b151d.chunk.js",
-    "main.js.map": "/tarea3/static/js/main.082b151d.chunk.js.map",
-    "runtime-main.js": "/tarea3/static/js/runtime-main.7f313ca3.js",
-    "runtime-main.js.map": "/tarea3/static/js/runtime-main.7f313ca3.js.map",
-    "static/js/2.ee68cf51.chunk.js": "/tarea3/static/js/2.ee68cf51.chunk.js",
-    "static/js/2.ee68cf51.chunk.js.map": "/tarea3/static/js/2.ee68cf51.chunk.js.map",
-    "static/js/3.55c3e5c2.chunk.js": "/tarea3/static/js/3.55c3e5c2.chunk.js",
-    "static/js/3.55c3e5c2.chunk.js.map": "/tarea3/static/js/3.55c3e5c2.chunk.js.map",
+    "main.js": "/tarea3/static/js/main.86c33831.chunk.js",
+    "main.js.map": "/tarea3/static/js/main.86c33831.chunk.js.map",
+    "runtime-main.js": "/tarea3/static/js/runtime-main.6b418a76.js",
+    "runtime-main.js.map": "/tarea3/static/js/runtime-main.6b418a76.js.map",
+    "static/js/2.1da286b8.chunk.js": "/tarea3/static/js/2.1da286b8.chunk.js",
+    "static/js/2.1da286b8.chunk.js.map": "/tarea3/static/js/2.1da286b8.chunk.js.map",
+    "static/js/3.e9de2dc4.chunk.js": "/tarea3/static/js/3.e9de2dc4.chunk.js",
+    "static/js/3.e9de2dc4.chunk.js.map": "/tarea3/static/js/3.e9de2dc4.chunk.js.map",
     "index.html": "/tarea3/index.html",
     "static/css/main.9d5b29c0.chunk.css.map": "/tarea3/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.ee68cf51.chunk.js.LICENSE.txt": "/tarea3/static/js/2.ee68cf51.chunk.js.LICENSE.txt"
+    "static/js/2.1da286b8.chunk.js.LICENSE.txt": "/tarea3/static/js/2.1da286b8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7f313ca3.js",
-    "static/js/2.ee68cf51.chunk.js",
+    "static/js/runtime-main.6b418a76.js",
+    "static/js/2.1da286b8.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.082b151d.chunk.js"
+    "static/js/main.86c33831.chunk.js"
   ]
 }
